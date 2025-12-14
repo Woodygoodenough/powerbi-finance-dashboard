@@ -25,11 +25,24 @@ def main():
             logger.info(f"Data fetched successfully")
 
     with open(file_path, "w", encoding="utf-8") as f:
-        # use csv instead of json
-
         logger.info(f"Writing data to {file_path}")
-        csv.writer(f).writerow(payload.keys())  # write the headers
-        csv.writer(f).writerows(payload.values())  # write the data
+
+        writer = csv.writer(f)
+        writer.writerow(["date", "open", "high", "low", "close", "volume"])
+
+        # Alpha Vantage returns a mapping of date -> {metric -> value}; flatten it
+        for date, metrics in sorted(payload.items(), reverse=True):
+            writer.writerow(
+                [
+                    date,
+                    metrics.get("1. open"),
+                    metrics.get("2. high"),
+                    metrics.get("3. low"),
+                    metrics.get("4. close"),
+                    metrics.get("5. volume"),
+                ]
+            )
+
         logger.info(f"Data written successfully to {file_path}")
 
 
