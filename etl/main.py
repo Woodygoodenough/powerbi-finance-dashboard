@@ -1,4 +1,4 @@
-import json
+import csv
 import logging
 from alphavantage import AlphaVantageError, create_client
 from constants import DATA_DIR, FILE_NAME
@@ -25,8 +25,11 @@ def main():
             logger.info(f"Data fetched successfully")
 
     with open(file_path, "w", encoding="utf-8") as f:
+        # use csv instead of json
+
         logger.info(f"Writing data to {file_path}")
-        json.dump(payload, f)
+        csv.writer(f).writerow(payload.keys())  # write the headers
+        csv.writer(f).writerows(payload.values())  # write the data
         logger.info(f"Data written successfully to {file_path}")
 
 
