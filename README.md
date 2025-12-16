@@ -12,7 +12,7 @@ Visualization and application layers (e.g., Power BI, Streamlit, custom dashboar
 
 ## Prerequisites
 - Python 3.11+
-- Alpha Vantage API key (`ALPHAVANTAGE_API_KEY`)
+- Alpha Vantage API key (`ALPHA_VANTAGE_API_KEY`)
 
 ## Setup
 ```bash
@@ -23,7 +23,7 @@ pip install -r requirements.txt
 
 ## Configuration
 
-* Set `ALPHAVANTAGE_API_KEY` in your shell or `.env`
+* Set `ALPHA_VANTAGE_API_KEY` in your shell or `.env`
 * Edit `config/tickers.yaml` to control:
 
   * asset classes (Equity / FX / Crypto)
